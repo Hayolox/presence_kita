@@ -141,6 +141,7 @@ class SignInStudentPage extends StatelessWidget {
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
+                        Navigator.pushReplacementNamed(context, '/homePage');
                       }
                     },
                     child: Container(
