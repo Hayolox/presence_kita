@@ -125,37 +125,40 @@ class SessionPage extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 16,
                 itemBuilder: (context, index) {
-                  return Container(
-                    height: 84,
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 19, horizontal: 20),
-                    margin: const EdgeInsets.only(bottom: 18),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Pertemuan 1',
-                              style: primaryTextStyle,
-                            ),
-                            Text(
-                              '09:30 am',
-                              style: primaryTextStyle,
-                            ),
-                          ],
-                        ),
-                        Text(
-                          'Anda belum melakukan absensi',
-                          style: primaryTextStyle,
-                        ),
-                      ],
+                  return GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, '/presencePage'),
+                    child: Container(
+                      height: 84,
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 19, horizontal: 20),
+                      margin: const EdgeInsets.only(bottom: 18),
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 1, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Pertemuan 1',
+                                style: primaryTextStyle,
+                              ),
+                              Text(
+                                '09:30 am',
+                                style: primaryTextStyle,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Anda belum melakukan absensi',
+                            style: primaryTextStyle,
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
               ListTile(
                 title: const Text('Surat Izin & Sakit'),
                 onTap: () {
-                  Navigator.pushNamed(context, '/licensePage');
+                  Navigator.pushNamed(context, '/permitPage');
                 },
               ),
               ListTile(

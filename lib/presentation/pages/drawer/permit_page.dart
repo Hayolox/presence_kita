@@ -3,8 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:presence_kita/theme.dart';
 
-class LicenseAndSicknessPage extends StatelessWidget {
-  const LicenseAndSicknessPage({super.key});
+class PermitPage extends StatelessWidget {
+  const PermitPage({super.key});
 
   @override
   Widget build(BuildContext context) {
