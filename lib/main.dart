@@ -6,6 +6,7 @@ import 'package:presence_kita/presentation/pages/drawer/license_and_sickness_pag
 import 'package:presence_kita/presentation/pages/drawer/questionnaire_page.dart';
 import 'package:presence_kita/presentation/pages/home_page.dart';
 import 'package:presence_kita/presentation/pages/one_page.dart';
+import 'package:presence_kita/presentation/pages/session_page.dart';
 import 'package:presence_kita/presentation/pages/splash_page.dart';
 
 void main() {
@@ -20,15 +21,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        // '/': (context) => const QuestionnairePage(),
-        '/': (context) => const SpalshScreenPage(),
-        '/onePage': (context) => const OnePage(),
-        '/signInStudentPage': (context) => SignInStudentPage(),
-        '/signInMajorPage': (context) => SignInMajortPage(),
-        '/homePage': (context) => const HomePage(),
-        '/changePasswordPage': (context) => ChangePasswordPage(),
-        '/licensePage': (context) => const LicenseAndSicknessPage(),
-        '/question': (context) => const QuestionnairePage(),
+        '/': (context) => const SessionPage(),
+        // '/': (context) => const SpalshScreenPage(),
+        // '/onePage': (context) => const OnePage(),
+        // '/signInStudentPage': (context) => SignInStudentPage(),
+        // '/signInMajorPage': (context) => SignInMajortPage(),
+        // '/homePage': (context) => const HomePage(),
+        // '/changePasswordPage': (context) => ChangePasswordPage(),
+        // '/licensePage': (context) => const LicenseAndSicknessPage(),
+        // '/question': (context) => const QuestionnairePage(),
+        // '/sessionPage': (context) => const SessionPage(),
       },
     );
   }
