@@ -6,6 +6,7 @@ import 'package:presence_kita/presentation/pages/drawer/license_and_sickness_pag
 import 'package:presence_kita/presentation/pages/drawer/questionnaire_page.dart';
 import 'package:presence_kita/presentation/pages/home_page.dart';
 import 'package:presence_kita/presentation/pages/one_page.dart';
+import 'package:presence_kita/presentation/pages/presence_page.dart';
 import 'package:presence_kita/presentation/pages/session_page.dart';
 import 'package:presence_kita/presentation/pages/splash_page.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const SessionPage(),
+        '/': (context) => const PresencePage(),
         // '/': (context) => const SpalshScreenPage(),
         // '/onePage': (context) => const OnePage(),
         // '/signInStudentPage': (context) => SignInStudentPage(),
