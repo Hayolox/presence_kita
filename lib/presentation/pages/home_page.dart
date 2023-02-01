@@ -32,22 +32,19 @@ class HomePage extends StatelessWidget {
               ListTile(
                 title: const Text('Ubah Password'),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  Navigator.pushNamed(context, '/changePasswordPage');
                 },
               ),
               ListTile(
                 title: const Text('Surat Izin & Sakit'),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  Navigator.pushNamed(context, '/licensePage');
                 },
               ),
               ListTile(
                 title: const Text('Kusioner'),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  Navigator.pushNamed(context, '/question');
                 },
               ),
             ],

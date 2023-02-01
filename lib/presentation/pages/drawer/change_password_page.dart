@@ -28,7 +28,10 @@ class ChangePasswordPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: const Icon(Icons.arrow_back),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(Icons.arrow_back),
+        ),
       ),
       body: Form(
         key: _formKey,

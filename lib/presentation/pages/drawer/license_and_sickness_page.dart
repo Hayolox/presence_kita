@@ -23,7 +23,10 @@ class LicenseAndSicknessPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: const Icon(Icons.arrow_back),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(Icons.arrow_back),
+        ),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(18),

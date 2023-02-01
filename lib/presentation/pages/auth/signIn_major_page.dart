@@ -88,7 +88,6 @@ class SignInMajortPage extends StatelessWidget {
                       ),
                     ),
                     validator: (value) {
-                      print(value);
                       if (value == '') {
                         return 'Username tidak boleh kosong';
                       }
@@ -104,6 +103,7 @@ class SignInMajortPage extends StatelessWidget {
                   delay: const Duration(seconds: 3),
                   child: TextFormField(
                     controller: passC,
+                    obscureText: true,
                     textInputAction: TextInputAction.done,
                     style: const TextStyle(color: Colors.grey),
                     decoration: InputDecoration(
@@ -124,7 +124,6 @@ class SignInMajortPage extends StatelessWidget {
                       ),
                     ),
                     validator: (value) {
-                      print(value);
                       if (value == '') {
                         return 'Password tidak boleh kosong';
                       }
@@ -142,6 +141,7 @@ class SignInMajortPage extends StatelessWidget {
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          Navigator.pushReplacementNamed(context, '/homePage');
                         }
                       },
                       child: const SubmitButtonWidget(
