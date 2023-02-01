@@ -1,5 +1,6 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:presence_kita/common/widgets/submit_button_widget.dart';
 import 'package:presence_kita/theme.dart';
 
 class SignInMajortPage extends StatelessWidget {
@@ -138,29 +139,14 @@ class SignInMajortPage extends StatelessWidget {
                 DelayedDisplay(
                   delay: const Duration(seconds: 3),
                   child: GestureDetector(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                      }
-                    },
-                    child: Container(
-                      height: 37,
-                      width: 128,
-                      decoration: BoxDecoration(
-                        color: blueColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                          child: Text(
-                        'Log IN',
-                        style: primaryTextStyle.copyWith(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                        }
+                      },
+                      child: SubmitButtonWidget(
+                        title: 'SigIn',
                       )),
-                    ),
-                  ),
                 ),
               ],
             ),
