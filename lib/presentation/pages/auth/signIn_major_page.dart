@@ -144,7 +144,7 @@ class SignInMajortPage extends StatelessWidget {
                           _formKey.currentState!.save();
                         }
                       },
-                      child: SubmitButtonWidget(
+                      child: const SubmitButtonWidget(
                         title: 'SigIn',
                       )),
                 ),
