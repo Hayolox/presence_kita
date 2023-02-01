@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:presence_kita/common/widgets/submit_button_widget.dart';
 import 'package:presence_kita/theme.dart';
 
 class QuestionnairePage extends StatelessWidget {
@@ -101,6 +102,10 @@ class QuestionnairePage extends StatelessWidget {
                       );
                     },
                   ),
+                ),
+                GestureDetector(
+                  child:
+                      const Center(child: SubmitButtonWidget(title: 'Selesai')),
                 )
               ],
             ),
