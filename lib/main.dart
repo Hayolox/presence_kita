@@ -5,9 +5,11 @@ import 'package:presence_kita/presentation/pages/drawer/change_password_page.dar
 import 'package:presence_kita/presentation/pages/drawer/permit_page.dart';
 import 'package:presence_kita/presentation/pages/drawer/questionnaire_page.dart';
 import 'package:presence_kita/presentation/pages/home_page.dart';
+import 'package:presence_kita/presentation/pages/license_page.dart';
 import 'package:presence_kita/presentation/pages/one_page.dart';
 import 'package:presence_kita/presentation/pages/presence_page.dart';
 import 'package:presence_kita/presentation/pages/session_page.dart';
+import 'package:presence_kita/presentation/pages/sick_page.dart';
 import 'package:presence_kita/presentation/pages/splash_page.dart';
 
 void main() {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const PresencePage(),
+        '/': (context) => const SickPage(),
         // '/': (context) => const SpalshScreenPage(),
         // '/onePage': (context) => const OnePage(),
         // '/signInStudentPage': (context) => SignInStudentPage(),
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
         // '/question': (context) => const QuestionnairePage(),
         // '/sessionPage': (context) => const SessionPage(),
         // '/presencePage': (context) => const PresencePage(),
+        // '/licensePage': (context) => const LicenseePage(),
+        // '/sickPage': (context) => const SickPage(),
       },
     );
   }
