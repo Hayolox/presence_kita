@@ -68,6 +68,7 @@ class SignInStudentPage extends StatelessWidget {
                   child: TextFormField(
                     controller: nimC,
                     textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.grey),
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -87,7 +88,6 @@ class SignInStudentPage extends StatelessWidget {
                       ),
                     ),
                     validator: (value) {
-                      print(value);
                       if (value == '') {
                         return 'NIM tidak boleh kosong';
                       }
@@ -103,6 +103,7 @@ class SignInStudentPage extends StatelessWidget {
                   delay: const Duration(seconds: 3),
                   child: TextFormField(
                     controller: passC,
+                    obscureText: true,
                     textInputAction: TextInputAction.done,
                     style: const TextStyle(color: Colors.grey),
                     decoration: InputDecoration(
@@ -123,7 +124,6 @@ class SignInStudentPage extends StatelessWidget {
                       ),
                     ),
                     validator: (value) {
-                      print(value);
                       if (value == '') {
                         return 'Password tidak boleh kosong';
                       }

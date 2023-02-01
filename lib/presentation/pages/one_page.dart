@@ -13,7 +13,7 @@ class OnePage extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/signInMajorPage');
+                Navigator.pushReplacementNamed(context, '/signInStudentPage');
               },
               child: Container(
                 height: 77,
