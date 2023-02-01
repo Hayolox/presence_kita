@@ -93,58 +93,62 @@ class HomePage extends StatelessWidget {
                       padding: const EdgeInsets.only(
                         bottom: 10,
                       ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15,
-                        ),
-                        height: 77,
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 1),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 45,
-                              width: 45,
-                              decoration: BoxDecoration(
-                                color: const Color(0xffAEC8E7),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'M',
-                                  style: primaryTextStyle.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 22,
+                      child: GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/sessionPage'),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                          ),
+                          height: 77,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 1),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xffAEC8E7),
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'M',
+                                    style: primaryTextStyle.copyWith(
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Text(
-                              'Pemweb I',
-                              style: primaryTextStyle.copyWith(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                'Pemweb I',
+                                style: primaryTextStyle.copyWith(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  '30',
-                                  style: primaryTextStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                              Row(
+                                children: [
+                                  Text(
+                                    '30',
+                                    style: primaryTextStyle.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                const Icon(Icons.people)
-                              ],
-                            )
-                          ],
+                                  const SizedBox(
+                                    width: 6,
+                                  ),
+                                  const Icon(Icons.people)
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     );
