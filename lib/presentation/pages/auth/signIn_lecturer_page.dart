@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:presence_kita/common/widgets/submit_button_widget.dart';
 import 'package:presence_kita/theme.dart';
 
-class SignInMajortPage extends StatelessWidget {
-  SignInMajortPage({super.key});
+class SignInLecturerPage extends StatelessWidget {
+  SignInLecturerPage({super.key});
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController nimC = TextEditingController();

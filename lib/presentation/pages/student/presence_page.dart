@@ -71,12 +71,14 @@ class PresencePage extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, '/licensePage'),
                   child: const SubmitButtonPresenceWidget(
                     title: 'Izin',
                     color: pinkColor,
                   ),
                 ),
                 GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, '/sickPage'),
                   child: const SubmitButtonPresenceWidget(
                     title: 'Sakit',
                     color: redColor,

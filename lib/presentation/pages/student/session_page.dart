@@ -16,7 +16,7 @@ class SessionPage extends StatelessWidget {
         bottomOpacity: 0.0,
         elevation: 0.0,
         title: Text(
-          'Ubah Password',
+          'Session',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             color: Colors.black,
@@ -55,55 +55,101 @@ class SessionPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  height: 45,
-                  width: 45,
-                  decoration: BoxDecoration(
-                    color: purpleColor,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '8',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
+                Column(
+                  children: [
+                    Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        color: purpleColor,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '8',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    Text(
+                      'Hadir',
+                      style: primaryTextStyle,
+                    ),
+                  ],
                 ),
-                Container(
-                  height: 45,
-                  width: 45,
-                  decoration: BoxDecoration(
-                    color: pinkColor,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '8',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
+                Column(
+                  children: [
+                    Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        color: pinkColor,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '8',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    Text(
+                      'Izin',
+                      style: primaryTextStyle,
+                    ),
+                  ],
                 ),
-                Container(
-                  height: 45,
-                  width: 45,
-                  decoration: BoxDecoration(
-                    color: redColor,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '8',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
+                Column(
+                  children: [
+                    Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        color: redColor,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '8',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
+                    Text(
+                      'Sakit',
+                      style: primaryTextStyle,
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, '/addSessionPage'),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 45,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: const Center(
+                          child: Icon(Icons.add),
+                        ),
+                      ),
+                      Text(
+                        'Add',
+                        style: primaryTextStyle,
+                      ),
+                    ],
                   ),
                 ),
               ],

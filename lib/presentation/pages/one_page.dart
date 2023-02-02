@@ -12,9 +12,8 @@ class OnePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/signInStudentPage');
-              },
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, '/signInStudentPage'),
               child: Container(
                 height: 77,
                 width: double.infinity,
@@ -38,6 +37,8 @@ class OnePage extends StatelessWidget {
               height: 40,
             ),
             GestureDetector(
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, 'signInLecturerPage'),
               child: Container(
                 height: 77,
                 width: double.infinity,
