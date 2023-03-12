@@ -16,8 +16,11 @@ class AuthViewModel extends ChangeNotifier {
 
       final prefs = await SharedPreferences.getInstance();
 
-      await prefs.setStringList(
-          'student', <String>[student.accessToken, student.student.name]);
+      await prefs.setStringList('student', <String>[
+        student.accessToken,
+        student.student.name,
+        student.student.nsn
+      ]);
 
       // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, '/homePage');
