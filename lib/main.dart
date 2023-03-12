@@ -7,10 +7,11 @@ import 'package:presence_kita/screen/drawer/permit_page.dart';
 import 'package:presence_kita/screen/drawer/questionnaire_page.dart';
 import 'package:presence_kita/screen/student/home/home_page.dart';
 import 'package:presence_kita/screen/student/home/home_view_model.dart';
-import 'package:presence_kita/screen/student/license_page.dart';
-import 'package:presence_kita/screen/student/presence_page.dart';
-import 'package:presence_kita/screen/student/session_page.dart';
-import 'package:presence_kita/screen/student/sick_page.dart';
+import 'package:presence_kita/screen/student/session/license_page.dart';
+import 'package:presence_kita/screen/student/session/presence_page.dart';
+import 'package:presence_kita/screen/student/session/session_page.dart';
+import 'package:presence_kita/screen/student/session/session_view_model.dart';
+import 'package:presence_kita/screen/student/session/sick_page.dart';
 import 'package:presence_kita/screen/splash_page.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,9 @@ void main() {
       ),
       ChangeNotifierProvider<HomeViewModel>(
         create: (context) => HomeViewModel(),
+      ),
+      ChangeNotifierProvider<SessionViewModel>(
+        create: (context) => SessionViewModel(),
       ),
     ],
     child: const MyApp(),

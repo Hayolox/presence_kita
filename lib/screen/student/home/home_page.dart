@@ -120,7 +120,16 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   child: GestureDetector(
                                     onTap: () => Navigator.pushNamed(
-                                        context, '/sessionPage'),
+                                        context, '/sessionPage',
+                                        arguments: {
+                                          'course_code': value
+                                              .dataHome
+                                              .subject[index]
+                                              .subject
+                                              .courseCode,
+                                          'name_subject': value.dataHome
+                                              .subject[index].subject.nickname
+                                        }),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(
                                         horizontal: 15,
