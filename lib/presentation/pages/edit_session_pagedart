@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:presence_kita/common/widgets/submit_button_widget.dart';
 import 'package:presence_kita/theme.dart';
 
-class AddSessionPage extends StatelessWidget {
+class EditrSessionPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  AddSessionPage({super.key});
+  EditrSessionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class AddSessionPage extends StatelessWidget {
         bottomOpacity: 0.0,
         elevation: 0.0,
         title: Text(
-          'Tambah Session',
+          'Edit Session',
           style: primaryTextStyle.copyWith(
             fontSize: 18,
             color: Colors.black,

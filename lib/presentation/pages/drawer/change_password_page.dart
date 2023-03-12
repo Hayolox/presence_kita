@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:presence_kita/common/widgets/submit_button_widget.dart';
 import 'package:presence_kita/theme.dart';
 
+// ignore: must_be_immutable
 class ChangePasswordPage extends StatelessWidget {
   ChangePasswordPage({super.key});
 

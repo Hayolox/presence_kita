@@ -16,7 +16,7 @@ class _SpalshPageState extends State<SpalshScreenPage> {
     Timer(
       const Duration(seconds: 3),
       () async {
-        Navigator.pushReplacementNamed(context, '/onePage');
+        Navigator.pushReplacementNamed(context, '/signInStudentPage');
       },
     );
     super.initState();
