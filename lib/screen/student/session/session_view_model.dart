@@ -38,7 +38,7 @@ class SessionViewModel extends ChangeNotifier {
     if (now.year == paramDateSession.year &&
         now.month == paramDateSession.month &&
         now.day == paramDateSession.day) {
-      if (now.hour == paramDateSession.hour &&
+      if (now.hour.toString() == paramFinishSession &&
           now.minute == paramDateSession.minute) {}
 
       Navigator.pushNamed(context, '/presencePage');
