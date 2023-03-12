@@ -5,7 +5,8 @@ import 'package:presence_kita/screen/auth/signIn_student_page.dart';
 import 'package:presence_kita/screen/drawer/change_password_page.dart';
 import 'package:presence_kita/screen/drawer/permit_page.dart';
 import 'package:presence_kita/screen/drawer/questionnaire_page.dart';
-import 'package:presence_kita/screen/student/home_page.dart';
+import 'package:presence_kita/screen/student/home/home_page.dart';
+import 'package:presence_kita/screen/student/home/home_view_model.dart';
 import 'package:presence_kita/screen/student/license_page.dart';
 import 'package:presence_kita/screen/student/presence_page.dart';
 import 'package:presence_kita/screen/student/session_page.dart';
@@ -18,6 +19,9 @@ void main() {
     providers: [
       ChangeNotifierProvider<AuthViewModel>(
         create: (context) => AuthViewModel(),
+      ),
+      ChangeNotifierProvider<HomeViewModel>(
+        create: (context) => HomeViewModel(),
       ),
     ],
     child: const MyApp(),
