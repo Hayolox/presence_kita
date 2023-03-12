@@ -16,8 +16,8 @@ class SessionPage extends StatefulWidget {
 }
 
 class _SessionPageState extends State<SessionPage> {
-  late String nameSubject;
-  late String courseCode;
+  String nameSubject = '';
+  String courseCode = '';
   @override
   void initState() {
     super.initState();
@@ -203,10 +203,11 @@ class _SessionPageState extends State<SessionPage> {
                               value.session.sessions[index].id,
                               courseCode,
                               value.session.sessions[index].date,
+                              value.session.sessions[index].finish,
                               context);
                         },
                         child: Container(
-                          height: 84,
+                          height: 105,
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(
                               vertical: 19, horizontal: 20),
@@ -223,14 +224,18 @@ class _SessionPageState extends State<SessionPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Pertemuan 1',
+                                    value.session.sessions[index].title,
                                     style: primaryTextStyle,
                                   ),
                                   Text(
-                                    '09:30 am',
+                                    value.session.sessions[index].start,
                                     style: primaryTextStyle,
                                   ),
                                 ],
+                              ),
+                              Text(
+                                '${value.session.sessions[index].date.day}-${value.session.sessions[index].date.month}-${value.session.sessions[index].date.year}',
+                                style: primaryTextStyle,
                               ),
                               Text(
                                 value.session.statusSession[index] == "none"

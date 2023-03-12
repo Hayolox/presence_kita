@@ -27,11 +27,22 @@ class SessionViewModel extends ChangeNotifier {
     changeStatusState(StatusState.none);
   }
 
-  presence(int paramSessionId, String paramSubjectCourseCode,
-      DateTime paramDateSession, BuildContext context) {
+  presence(
+      int paramSessionId,
+      String paramSubjectCourseCode,
+      DateTime paramDateSession,
+      String paramFinishSession,
+      BuildContext context) {
     DateTime now = DateTime.now();
 
-    if (now.isAfter(paramDateSession)) {
+    if (now.year == paramDateSession.year &&
+        now.month == paramDateSession.month &&
+        now.day == paramDateSession.day) {
+      if (now.hour == paramDateSession.hour &&
+          now.minute == paramDateSession.minute) {}
+
+      Navigator.pushNamed(context, '/presencePage');
+    } else {
       AwesomeDialog(
         context: context,
         dialogType: DialogType.error,
@@ -40,8 +51,6 @@ class SessionViewModel extends ChangeNotifier {
         desc: 'Anda Tidak Bisa Melakukan Presensi',
         btnOkOnPress: () {},
       ).show();
-    } else {
-      Navigator.pushNamed(context, '/presencePage');
     }
   }
 }
