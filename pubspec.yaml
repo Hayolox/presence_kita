@@ -39,7 +39,9 @@ dependencies:
   delayed_display: ^2.0.0
   device_info_plus: ^8.1.0
   provider: ^6.0.5
-  dio: ^5.0.2
+  dio: ^5.0.0
+  shared_preferences: ^2.0.18
+  awesome_dialog: ^3.0.2
 
 dev_dependencies:
   flutter_test:

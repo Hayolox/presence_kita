@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:delayed_display/delayed_display.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SpalshScreenPage extends StatefulWidget {
   const SpalshScreenPage({super.key});
@@ -16,7 +17,15 @@ class _SpalshPageState extends State<SpalshScreenPage> {
     Timer(
       const Duration(seconds: 3),
       () async {
-        Navigator.pushReplacementNamed(context, '/signInStudentPage');
+        final prefs = await SharedPreferences.getInstance();
+        final List<String>? items = prefs.getStringList('student');
+        if (items == null) {
+          // ignore: use_build_context_synchronously
+          Navigator.pushReplacementNamed(context, '/signInStudentPage');
+        } else {
+          // ignore: use_build_context_synchronously
+          Navigator.pushReplacementNamed(context, '/homePage');
+        }
       },
     );
     super.initState();

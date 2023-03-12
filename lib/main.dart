@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:presence_kita/screen/auth/auth_view_model.dart';
 import 'package:presence_kita/screen/komti/add_session_page.dart';
 import 'package:presence_kita/screen/auth/signIn_student_page.dart';
 import 'package:presence_kita/screen/drawer/change_password_page.dart';
@@ -10,9 +11,17 @@ import 'package:presence_kita/screen/student/presence_page.dart';
 import 'package:presence_kita/screen/student/session_page.dart';
 import 'package:presence_kita/screen/student/sick_page.dart';
 import 'package:presence_kita/screen/splash_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AuthViewModel>(
+        create: (context) => AuthViewModel(),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

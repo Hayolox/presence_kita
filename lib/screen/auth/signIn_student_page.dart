@@ -2,7 +2,10 @@
 
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:presence_kita/screen/auth/auth_view_model.dart';
 import 'package:presence_kita/theme.dart';
+import 'package:provider/provider.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class SignInStudentPage extends StatelessWidget {
   SignInStudentPage({super.key});
@@ -30,9 +33,9 @@ class SignInStudentPage extends StatelessWidget {
                   delay: const Duration(seconds: 1),
                   child: Center(
                     child: Text(
-                      'Attendity',
+                      'Presence Kita',
                       style: primaryTextStyle.copyWith(
-                        fontSize: 44,
+                        fontSize: 26,
                       ),
                     ),
                   ),
@@ -55,7 +58,7 @@ class SignInStudentPage extends StatelessWidget {
                   delay: const Duration(seconds: 3),
                   child: Center(
                     child: Text(
-                      'Login Your Akun',
+                      'Silahkan Login',
                       style: primaryTextStyle.copyWith(
                         fontSize: 20,
                       ),
@@ -140,10 +143,20 @@ class SignInStudentPage extends StatelessWidget {
                 DelayedDisplay(
                   delay: const Duration(seconds: 3),
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        Navigator.pushReplacementNamed(context, '/homePage');
+                        final deviceInfo = DeviceInfoPlugin();
+                        AndroidDeviceInfo androidInfo;
+                        androidInfo = await deviceInfo.androidInfo;
+                        final androidId = androidInfo.id;
+
+                        var viewModel =
+                            // ignore: use_build_context_synchronously
+                            Provider.of<AuthViewModel>(context, listen: false);
+                        // ignore: use_build_context_synchronously
+                        viewModel.signIn(
+                            nimC.text, passC.text, androidId, context);
                       }
                     },
                     child: Container(
