@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:presence_kita/presentation/pages/add_session_page.dart';
-import 'package:presence_kita/presentation/pages/auth/signIn_student_page.dart';
-import 'package:presence_kita/presentation/pages/drawer/change_password_page.dart';
-import 'package:presence_kita/presentation/pages/drawer/permit_page.dart';
-import 'package:presence_kita/presentation/pages/drawer/questionnaire_page.dart';
-import 'package:presence_kita/presentation/pages/student/home_page.dart';
-import 'package:presence_kita/presentation/pages/student/license_page.dart';
-import 'package:presence_kita/presentation/pages/one_page.dart';
-import 'package:presence_kita/presentation/pages/student/presence_page.dart';
-import 'package:presence_kita/presentation/pages/student/session_page.dart';
-import 'package:presence_kita/presentation/pages/student/sick_page.dart';
-import 'package:presence_kita/presentation/pages/splash_page.dart';
+import 'package:presence_kita/screen/komti/add_session_page.dart';
+import 'package:presence_kita/screen/auth/signIn_student_page.dart';
+import 'package:presence_kita/screen/drawer/change_password_page.dart';
+import 'package:presence_kita/screen/drawer/permit_page.dart';
+import 'package:presence_kita/screen/drawer/questionnaire_page.dart';
+import 'package:presence_kita/screen/student/home_page.dart';
+import 'package:presence_kita/screen/student/license_page.dart';
+import 'package:presence_kita/screen/student/presence_page.dart';
+import 'package:presence_kita/screen/student/session_page.dart';
+import 'package:presence_kita/screen/student/sick_page.dart';
+import 'package:presence_kita/screen/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +25,6 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/': (context) => SessionLecturerPage(),
         '/': (context) => const SpalshScreenPage(),
-        '/onePage': (context) => const OnePage(),
 
         //Global Page
         '/changePasswordPage': (context) => ChangePasswordPage(),
