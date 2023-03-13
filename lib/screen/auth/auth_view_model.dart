@@ -33,7 +33,6 @@ class AuthViewModel extends ChangeNotifier {
           animType: AnimType.rightSlide,
           title: 'INFO',
           desc: 'Nim Atau Password Salah',
-          btnCancelOnPress: () {},
           btnOkOnPress: () {},
         ).show();
       }
@@ -45,7 +44,42 @@ class AuthViewModel extends ChangeNotifier {
           animType: AnimType.rightSlide,
           title: 'PERINGATAN',
           desc: 'Anda Terdeteksi Melakukan Kecurangan, Silahkan Hubungi Staff',
-          btnCancelOnPress: () {},
+          btnOkOnPress: () {},
+        ).show();
+      }
+    }
+  }
+
+  changePasswrod(String paramOldPass, String newPass, String confirmNewPass,
+      BuildContext context) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final List<String>? items = prefs.getStringList('student');
+
+      Map<String, dynamic> dataPass = {
+        'old_password': paramOldPass,
+        'new_password': newPass,
+      };
+
+      await _authApi.changePassword(dataPass, items![0]);
+      // ignore: use_build_context_synchronously
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.success,
+        animType: AnimType.rightSlide,
+        title: 'INFO',
+        desc: 'Password Berhasil Di Ubah',
+        btnOkOnPress: () {},
+      ).show();
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 400) {
+        // ignore: use_build_context_synchronously
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          animType: AnimType.rightSlide,
+          title: 'INFO',
+          desc: 'Password Lama Salah',
           btnOkOnPress: () {},
         ).show();
       }

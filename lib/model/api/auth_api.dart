@@ -18,4 +18,16 @@ class AuthApi {
 
     return StudentModel.fromJson(response.data['data']);
   }
+
+  Future changePassword(
+      Map<String, dynamic> paramDataPass, String paramToken) async {
+    var response = await _api.dio.post('change-password',
+        data: paramDataPass,
+        options: Options(
+          headers: {
+            "authorization": "Bearer $paramToken",
+          },
+        ));
+    return response;
+  }
 }
