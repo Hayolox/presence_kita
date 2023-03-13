@@ -19,6 +19,10 @@ class _HomePageState extends State<HomePage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel = Provider.of<HomeViewModel>(context, listen: false);
       await viewModel.getDataHome();
+      if (viewModel.dataHome.sus == 1) {
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacementNamed(context, '/question');
+      }
     });
   }
 
@@ -49,12 +53,6 @@ class _HomePageState extends State<HomePage> {
                 title: const Text('Ubah Password'),
                 onTap: () {
                   Navigator.pushNamed(context, '/changePasswordPage');
-                },
-              ),
-              ListTile(
-                title: const Text('Kusioner'),
-                onTap: () {
-                  Navigator.pushNamed(context, '/question');
                 },
               ),
             ],
