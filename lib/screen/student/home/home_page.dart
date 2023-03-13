@@ -52,12 +52,6 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
-                title: const Text('Surat Izin & Sakit'),
-                onTap: () {
-                  Navigator.pushNamed(context, '/permitPage');
-                },
-              ),
-              ListTile(
                 title: const Text('Kusioner'),
                 onTap: () {
                   Navigator.pushNamed(context, '/question');
