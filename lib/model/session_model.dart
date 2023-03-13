@@ -58,6 +58,7 @@ class Session {
     required this.geolocation,
     required this.createdAt,
     required this.updatedAt,
+    required this.lecturer,
   });
 
   int id;
@@ -74,6 +75,7 @@ class Session {
   String geolocation;
   DateTime createdAt;
   DateTime updatedAt;
+  Lecturer lecturer;
 
   factory Session.fromJson(Map<String, dynamic> json) => Session(
         id: json["id"],
@@ -90,6 +92,7 @@ class Session {
         geolocation: json["geolocation"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+        lecturer: Lecturer.fromJson(json["lecturer"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -106,6 +109,47 @@ class Session {
         "year": year,
         "room_id": roomId,
         "geolocation": geolocation,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "lecturer": lecturer.toJson(),
+      };
+}
+
+class Lecturer {
+  Lecturer({
+    required this.nip,
+    required this.fullName,
+    required this.username,
+    required this.password,
+    required this.majorId,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  int nip;
+  String fullName;
+  String username;
+  String password;
+  String majorId;
+  DateTime createdAt;
+  DateTime updatedAt;
+
+  factory Lecturer.fromJson(Map<String, dynamic> json) => Lecturer(
+        nip: json["nip"],
+        fullName: json["full_name"],
+        username: json["username"],
+        password: json["password"],
+        majorId: json["major_id"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "nip": nip,
+        "full_name": fullName,
+        "username": username,
+        "password": password,
+        "major_id": majorId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
