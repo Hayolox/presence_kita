@@ -15,7 +15,7 @@ class HomeModel {
     required this.subject,
   });
 
-  String sus;
+  int sus;
   List<int> countStudentInSubject;
   List<SubjectElement> subject;
 

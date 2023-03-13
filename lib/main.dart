@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presence_kita/screen/auth/auth_view_model.dart';
+import 'package:presence_kita/screen/drawer/sus_view_model.dart';
 import 'package:presence_kita/screen/komti/add_session_page.dart';
 import 'package:presence_kita/screen/auth/signIn_student_page.dart';
 import 'package:presence_kita/screen/drawer/change_password_page.dart';
@@ -26,6 +27,9 @@ void main() {
       ),
       ChangeNotifierProvider<SessionViewModel>(
         create: (context) => SessionViewModel(),
+      ),
+      ChangeNotifierProvider<SusViewModel>(
+        create: (context) => SusViewModel(),
       ),
     ],
     child: const MyApp(),
