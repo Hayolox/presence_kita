@@ -247,12 +247,16 @@ class _SessionPageState extends State<SessionPage> {
                                 style: primaryTextStyle,
                               ),
                               Text(
-                                value.session.statusSession[index] == "none"
-                                    ? "Anda Belum Melakukan Presensi"
+                                value.session.sessions[index].date.day >
+                                        value.now.day
+                                    ? "Anda Alpha"
                                     : value.session.statusSession[index] ==
-                                            "hadir"
-                                        ? "Anda Hadir"
-                                        : "Anda Izin",
+                                            "none"
+                                        ? "Anda Belum Melakukan Presensi"
+                                        : value.session.statusSession[index] ==
+                                                "hadir"
+                                            ? "Anda Hadir"
+                                            : "Anda Izin",
                                 style: primaryTextStyle,
                               ),
                             ],
