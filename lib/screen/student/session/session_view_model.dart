@@ -7,7 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SessionViewModel extends ChangeNotifier {
   final SessionApi _sessionApi = SessionApi();
+  late String roles;
   StatusState state = StatusState.loding;
+  DateTime now = DateTime.now();
 
   late SessionModel session;
 
@@ -23,6 +25,7 @@ class SessionViewModel extends ChangeNotifier {
     SessionModel getDataSession =
         await _sessionApi.getSession(items![0], paramSubject);
     session = getDataSession;
+    roles = getDataSession.roles;
     notifyListeners();
     changeStatusState(StatusState.none);
   }
@@ -32,13 +35,12 @@ class SessionViewModel extends ChangeNotifier {
       String paramSubjectCourseCode,
       DateTime paramDateSession,
       String paramFinishSession,
+      Map<String, dynamic> argument,
       BuildContext context) {
-    DateTime now = DateTime.now();
-
     if (now.year == paramDateSession.year &&
         now.month == paramDateSession.month &&
         now.day == paramDateSession.day) {
-      Navigator.pushNamed(context, '/presencePage');
+      Navigator.pushNamed(context, '/presencePage', arguments: argument);
     } else {
       AwesomeDialog(
         context: context,
@@ -49,5 +51,10 @@ class SessionViewModel extends ChangeNotifier {
         btnOkOnPress: () {},
       ).show();
     }
+  }
+
+  loadingPresence() {
+    changeStatusState(StatusState.loding);
+    changeStatusState(StatusState.none);
   }
 }

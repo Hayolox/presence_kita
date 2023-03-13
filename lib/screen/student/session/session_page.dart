@@ -24,6 +24,7 @@ class _SessionPageState extends State<SessionPage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel = Provider.of<SessionViewModel>(context, listen: false);
       Map args = ModalRoute.of(context)!.settings.arguments as Map;
+
       nameSubject = args['name_subject'];
       courseCode = args['course_code'];
       await viewModel.getDataSession(courseCode);
@@ -155,29 +156,31 @@ class _SessionPageState extends State<SessionPage> {
                         ),
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, '/addSessionPage'),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 45,
-                            width: 45,
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(25),
+                    if (value.roles == "komti") ...[
+                      GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/addSessionPage'),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 45,
+                              width: 45,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              child: const Center(
+                                child: Icon(Icons.add),
+                              ),
                             ),
-                            child: const Center(
-                              child: Icon(Icons.add),
+                            Text(
+                              'Add',
+                              style: primaryTextStyle,
                             ),
-                          ),
-                          Text(
-                            'Add',
-                            style: primaryTextStyle,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ],
                 ),
                 const SizedBox(
@@ -204,6 +207,12 @@ class _SessionPageState extends State<SessionPage> {
                               courseCode,
                               value.session.sessions[index].date,
                               value.session.sessions[index].finish,
+                              {
+                                'lecturer': value
+                                    .session.sessions[index].lecturer.fullName,
+                                'start': value.session.sessions[index].start,
+                                'finish': value.session.sessions[index].finish,
+                              },
                               context);
                         },
                         child: Container(

@@ -16,6 +16,7 @@ class SessionModel {
     required this.alpha,
     required this.statusSession,
     required this.sessions,
+    required this.roles,
   });
 
   int presence;
@@ -23,6 +24,7 @@ class SessionModel {
   int alpha;
   List<String> statusSession;
   List<Session> sessions;
+  String roles;
 
   factory SessionModel.fromJson(Map<String, dynamic> json) => SessionModel(
         presence: json["presence"],
@@ -31,6 +33,7 @@ class SessionModel {
         statusSession: List<String>.from(json["status_session"].map((x) => x)),
         sessions: List<Session>.from(
             json["sessions"].map((x) => Session.fromJson(x))),
+        roles: json["roles"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,6 +42,7 @@ class SessionModel {
         "alpha": alpha,
         "status_session": List<dynamic>.from(statusSession.map((x) => x)),
         "sessions": List<dynamic>.from(sessions.map((x) => x.toJson())),
+        "roles": roles,
       };
 }
 
