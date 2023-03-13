@@ -250,13 +250,22 @@ class _SessionPageState extends State<SessionPage> {
                                 value.session.sessions[index].date.day >
                                         value.now.day
                                     ? "Anda Alpha"
-                                    : value.session.statusSession[index] ==
-                                            "none"
-                                        ? "Anda Belum Melakukan Presensi"
-                                        : value.session.statusSession[index] ==
-                                                "hadir"
-                                            ? "Anda Hadir"
-                                            : "Anda Izin",
+                                    : value.session.sessions[index].date.month >
+                                            value.now.month
+                                        ? "Anda Alpha"
+                                        : value.session.sessions[index].date
+                                                    .year >
+                                                value.now.year
+                                            ? 'Anda Alpha'
+                                            : value.session
+                                                        .statusSession[index] ==
+                                                    "none"
+                                                ? "Anda Belum Melakukan Presensi"
+                                                : value.session.statusSession[
+                                                            index] ==
+                                                        "hadir"
+                                                    ? "Anda Hadir"
+                                                    : "Anda Izin",
                                 style: primaryTextStyle,
                               ),
                             ],
