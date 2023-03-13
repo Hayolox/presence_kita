@@ -19,7 +19,8 @@ class AuthViewModel extends ChangeNotifier {
       await prefs.setStringList('student', <String>[
         student.accessToken,
         student.student.name,
-        student.student.nsn
+        student.student.nsn,
+        student.student.roles
       ]);
 
       // ignore: use_build_context_synchronously
