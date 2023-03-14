@@ -212,6 +212,12 @@ class _SessionPageState extends State<SessionPage> {
                                     .session.sessions[index].lecturer.fullName,
                                 'start': value.session.sessions[index].start,
                                 'finish': value.session.sessions[index].finish,
+                                'geolocation':
+                                    value.session.sessions[index].geolocation,
+                                'latitude':
+                                    value.session.sessions[index].room.latitude,
+                                'longitude': value
+                                    .session.sessions[index].room.longitude,
                               },
                               context);
                         },
