@@ -247,16 +247,17 @@ class _SessionPageState extends State<SessionPage> {
                                 style: primaryTextStyle,
                               ),
                               Text(
-                                value.session.sessions[index].date.day >
-                                        value.now.day
-                                    ? "Anda Alpha"
-                                    : value.session.sessions[index].date.month >
-                                            value.now.month
-                                        ? "Anda Alpha"
-                                        : value.session.sessions[index].date
-                                                    .year >
-                                                value.now.year
-                                            ? 'Anda Alpha'
+                                value.now.day >
+                                        value.session.sessions[index].date.day
+                                    ? "Anda Alpa"
+                                    : value.now.month >
+                                            value.session.sessions[index].date
+                                                .month
+                                        ? "Anda Alpa"
+                                        : value.now.year >
+                                                value.session.sessions[index]
+                                                    .date.year
+                                            ? 'Anda Alpa'
                                             : value.session
                                                         .statusSession[index] ==
                                                     "none"
