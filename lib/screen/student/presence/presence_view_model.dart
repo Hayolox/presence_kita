@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
@@ -8,6 +9,7 @@ import 'package:presence_kita/constant/state.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:presence_kita/model/api/presence_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:file_picker/file_picker.dart';
 import 'dart:developer';
 
 class PresenceViewModel extends ChangeNotifier {
@@ -23,6 +25,9 @@ class PresenceViewModel extends ChangeNotifier {
   late String qrCode;
   late String subjectCourseCode;
   late int sessionId;
+
+  String fileName = 'Pilih File';
+  late File file;
 
   StatusState state = StatusState.loding;
   DateTime now = DateTime.now();
@@ -78,59 +83,79 @@ class PresenceViewModel extends ChangeNotifier {
       if (qrCodeResult.isNotEmpty) {
         qrCode = qrCodeResult;
         changeStatusState(StatusState.loding);
-
-        if (position.isMocked) {
-          // ignore: use_build_context_synchronously
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.error,
-            animType: AnimType.rightSlide,
-            title: 'Info',
-            desc: 'Anda Kedeteksi Menggunakan Fake GPS',
-            btnOkOnPress: () {},
-          ).show();
-          changeStatusState(StatusState.none);
-        } else {
-          if (distanceInMeters < 10) {
-            Map<String, dynamic> data = {
-              'QrCode': qrCode,
-              'session_id': sessionId,
-              'subject_course_code': subjectCourseCode,
-              'status': 'hadir'
-            };
-            await _api.presence(data, items![0]);
-            changeStatusState(StatusState.none);
-            // ignore: use_build_context_synchronously
-            AwesomeDialog(
-              context: context,
-              dialogType: DialogType.success,
-              animType: AnimType.rightSlide,
-              title: 'Info',
-              desc: 'Berhasil Presensi Hadir',
-            ).show();
-
-            Timer(
-              const Duration(seconds: 2),
-              () => Navigator.pop(context),
-            );
-            Timer(
-              const Duration(seconds: 2),
-              () => Navigator.pushNamedAndRemoveUntil(
-                  context, '/homePage', (route) => false),
-            );
-          } else {
-            log(position.latitude.toString());
-            log(position.longitude.toString());
+        Map<String, dynamic> data = {
+          'QrCode': qrCode,
+          'session_id': sessionId,
+          'subject_course_code': subjectCourseCode,
+          'status': 'hadir'
+        };
+        if (geolocation == '1') {
+          if (position.isMocked) {
             // ignore: use_build_context_synchronously
             AwesomeDialog(
               context: context,
               dialogType: DialogType.error,
               animType: AnimType.rightSlide,
               title: 'Info',
-              desc: 'Anda Diluar Jarak Yang Di Tentukan',
+              desc: 'Anda Kedeteksi Menggunakan Fake GPS',
+              btnOkOnPress: () {},
             ).show();
             changeStatusState(StatusState.none);
+          } else {
+            if (distanceInMeters < 10) {
+              await _api.presence(data, items![0]);
+              changeStatusState(StatusState.none);
+              // ignore: use_build_context_synchronously
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.success,
+                animType: AnimType.rightSlide,
+                title: 'Info',
+                desc: 'Berhasil Presensi Hadir',
+              ).show();
+
+              Timer(
+                const Duration(seconds: 2),
+                () => Navigator.pop(context),
+              );
+              Timer(
+                const Duration(seconds: 2),
+                () => Navigator.pushNamedAndRemoveUntil(
+                    context, '/homePage', (route) => false),
+              );
+            } else {
+              // ignore: use_build_context_synchronously
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.error,
+                animType: AnimType.rightSlide,
+                title: 'Info',
+                desc: 'Anda Diluar Jarak Yang Di Tentukan',
+              ).show();
+              changeStatusState(StatusState.none);
+            }
           }
+        } else {
+          await _api.presence(data, items![0]);
+          changeStatusState(StatusState.none);
+          // ignore: use_build_context_synchronously
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.success,
+            animType: AnimType.rightSlide,
+            title: 'Info',
+            desc: 'Berhasil Presensi Hadir',
+          ).show();
+
+          Timer(
+            const Duration(seconds: 2),
+            () => Navigator.pop(context),
+          );
+          Timer(
+            const Duration(seconds: 2),
+            () => Navigator.pushNamedAndRemoveUntil(
+                context, '/homePage', (route) => false),
+          );
         }
       }
     } on DioError catch (e) {
@@ -141,11 +166,55 @@ class PresenceViewModel extends ChangeNotifier {
           dialogType: DialogType.info,
           animType: AnimType.rightSlide,
           title: 'INFO',
-          desc: 'Silahkan Scan QrCode Ulang',
+          desc: 'Silahkan Presensi Ulang',
           btnOkOnPress: () {},
         ).show();
         changeStatusState(StatusState.none);
       }
+    }
+  }
+
+  izin() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (result != null) {
+      fileName = 'File Sudah Dipilih';
+      file = File(result.files.single.path ?? 'file.pdf');
+      notifyListeners();
+    }
+  }
+
+  submitIzin(BuildContext context) async {
+    try {
+      changeStatusState(StatusState.loding);
+      final prefs = await SharedPreferences.getInstance();
+      final List<String>? items = prefs.getStringList('student');
+      await _api.izin(file, sessionId, subjectCourseCode, items![0]);
+      changeStatusState(StatusState.none);
+      // ignore: use_build_context_synchronously
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.info,
+        animType: AnimType.rightSlide,
+        title: 'INFO',
+        desc:
+            'Berhasil Upload Surat, Silahkan Menunggu Konfirmasi Staff Atau Dosen',
+        btnOkOnPress: () {},
+      ).show();
+      Timer(
+        const Duration(seconds: 2),
+        () => Navigator.pop(context),
+      );
+      Timer(
+        const Duration(seconds: 2),
+        () => Navigator.pushNamedAndRemoveUntil(
+            context, '/homePage', (route) => false),
+      );
+    } catch (e) {
+      log(e.toString());
     }
   }
 }

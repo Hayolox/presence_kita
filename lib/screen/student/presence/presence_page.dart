@@ -113,13 +113,6 @@ class _PresencePageState extends State<PresencePage> {
                           color: pinkColor,
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () => Navigator.pushNamed(context, '/sickPage'),
-                        child: const SubmitButtonPresenceWidget(
-                          title: 'Sakit',
-                          color: redColor,
-                        ),
-                      ),
                     ],
                   )
                 ],

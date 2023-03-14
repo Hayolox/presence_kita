@@ -203,8 +203,31 @@ class _SessionPageState extends State<SessionPage> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          if (value.session.statusSession[index] != 'hadir' ||
-                              value.session.statusSession[index] == 'izin') {
+                          if (value.session.statusSession[index] == 'hadir' ||
+                              value.session.statusSession[index] == 'izin' ||
+                              value.session.statusSession[index] == 'proses') {
+                            if (value.session.statusSession[index] ==
+                                'proses') {
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.info,
+                                animType: AnimType.rightSlide,
+                                title: 'Info',
+                                desc:
+                                    'Surat Izin Menunggu Konfirmasi Staff Atau Dosen',
+                                btnOkOnPress: () {},
+                              ).show();
+                            } else {
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.info,
+                                animType: AnimType.rightSlide,
+                                title: 'Info',
+                                desc: 'Anda Sudah Melakukan Presensi',
+                                btnOkOnPress: () {},
+                              ).show();
+                            }
+                          } else {
                             value.presence(
                                 value.session.sessions[index].id,
                                 courseCode,
@@ -228,15 +251,6 @@ class _SessionPageState extends State<SessionPage> {
                                       .session.sessions[index].room.longitude,
                                 },
                                 context);
-                          } else {
-                            AwesomeDialog(
-                              context: context,
-                              dialogType: DialogType.info,
-                              animType: AnimType.rightSlide,
-                              title: 'Info',
-                              desc: 'Anda Sudah Melakukan Presensi',
-                              btnOkOnPress: () {},
-                            ).show();
                           }
                         },
                         child: Container(
@@ -290,7 +304,11 @@ class _SessionPageState extends State<SessionPage> {
                                                             index] ==
                                                         "hadir"
                                                     ? "Anda Hadir"
-                                                    : "Anda Izin",
+                                                    : value.session.statusSession[
+                                                                index] ==
+                                                            "proses"
+                                                        ? "Menunggu Konfirmasi Staff Atau Dosen"
+                                                        : "Anda Izin",
                                 style: primaryTextStyle,
                               ),
                             ],
