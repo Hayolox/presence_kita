@@ -52,9 +52,4 @@ class SessionViewModel extends ChangeNotifier {
       ).show();
     }
   }
-
-  loadingPresence() {
-    changeStatusState(StatusState.loding);
-    changeStatusState(StatusState.none);
-  }
 }

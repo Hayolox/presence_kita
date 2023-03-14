@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:presence_kita/common/widgets/loading_screen.dart';
 import 'package:presence_kita/common/widgets/submit_button_presence_widget.dart';
 import 'package:presence_kita/constant/state.dart';
+import 'package:presence_kita/screen/student/presence/presence_view_model.dart';
 import 'package:presence_kita/screen/student/session/session_view_model.dart';
 import 'package:presence_kita/theme.dart';
 import 'package:provider/provider.dart';
@@ -21,9 +22,8 @@ class _PresencePageState extends State<PresencePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      var viewModel = Provider.of<SessionViewModel>(context, listen: false);
+      var viewModel = Provider.of<PresenceViewModel>(context, listen: false);
       Map args = ModalRoute.of(context)!.settings.arguments as Map;
-      print(args['lecturer']);
       nameLecturer = args['lecturer'];
       start = args['start'];
       finish = args['finish'];

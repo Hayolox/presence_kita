@@ -8,11 +8,12 @@ import 'package:presence_kita/screen/drawer/permit_page.dart';
 import 'package:presence_kita/screen/drawer/questionnaire_page.dart';
 import 'package:presence_kita/screen/student/home/home_page.dart';
 import 'package:presence_kita/screen/student/home/home_view_model.dart';
-import 'package:presence_kita/screen/student/session/license_page.dart';
-import 'package:presence_kita/screen/student/session/presence_page.dart';
+import 'package:presence_kita/screen/student/presence/license_page.dart';
+import 'package:presence_kita/screen/student/presence/presence_page.dart';
+import 'package:presence_kita/screen/student/presence/presence_view_model.dart';
 import 'package:presence_kita/screen/student/session/session_page.dart';
 import 'package:presence_kita/screen/student/session/session_view_model.dart';
-import 'package:presence_kita/screen/student/session/sick_page.dart';
+import 'package:presence_kita/screen/student/presence/sick_page.dart';
 import 'package:presence_kita/screen/splash_page.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,9 @@ void main() {
       ),
       ChangeNotifierProvider<SusViewModel>(
         create: (context) => SusViewModel(),
+      ),
+      ChangeNotifierProvider<PresenceViewModel>(
+        create: (context) => PresenceViewModel(),
       ),
     ],
     child: const MyApp(),
