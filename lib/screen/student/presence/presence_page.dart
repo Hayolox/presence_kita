@@ -15,19 +15,22 @@ class PresencePage extends StatefulWidget {
 }
 
 class _PresencePageState extends State<PresencePage> {
-  String nameLecturer = '';
-  String start = '';
-  String finish = '';
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel = Provider.of<PresenceViewModel>(context, listen: false);
       Map args = ModalRoute.of(context)!.settings.arguments as Map;
-      nameLecturer = args['lecturer'];
-      start = args['start'];
-      finish = args['finish'];
-      viewModel.loadingPresence();
+
+      viewModel.loadingPresence(
+          args['lecturer'],
+          args['subject_course_code'],
+          args['session_id'],
+          args['start'],
+          args['finish'],
+          args['geolocation'],
+          double.parse(args['latitude']),
+          double.parse(args['longitude']));
     });
   }
 
@@ -55,7 +58,7 @@ class _PresencePageState extends State<PresencePage> {
       ),
       body: Padding(
           padding: const EdgeInsets.all(20),
-          child: Consumer<SessionViewModel>(
+          child: Consumer<PresenceViewModel>(
             builder: (context, value, child) {
               if (value.state == StatusState.loding) {
                 return const Center(
@@ -69,7 +72,7 @@ class _PresencePageState extends State<PresencePage> {
                     height: 18,
                   ),
                   Text(
-                    nameLecturer,
+                    value.nameLecturer,
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -79,14 +82,14 @@ class _PresencePageState extends State<PresencePage> {
                     height: 34,
                   ),
                   Text(
-                    'Batas Presensi Masuk : $start',
+                    'Batas Presensi Masuk : ${value.start}',
                     style: primaryTextStyle,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   Text(
-                    'Batas Presensi Keluar : $finish',
+                    'Batas Presensi Keluar : ${value.finish}',
                     style: primaryTextStyle,
                   ),
                   const SizedBox(
@@ -96,6 +99,7 @@ class _PresencePageState extends State<PresencePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
+                        onTap: () => value.present(context),
                         child: const SubmitButtonPresenceWidget(
                           title: 'Masuk',
                           color: purpleColor,

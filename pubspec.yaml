@@ -43,6 +43,9 @@ dependencies:
   shared_preferences: ^2.0.18
   awesome_dialog: ^3.0.2
   intl: ^0.18.0
+  flutter_barcode_scanner: ^2.0.0
+  geolocator: ^9.0.2
+
 
 dev_dependencies:
   flutter_test:

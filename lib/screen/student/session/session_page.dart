@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:presence_kita/common/widgets/loading_screen.dart';
 import 'package:presence_kita/constant/state.dart';
@@ -202,24 +203,41 @@ class _SessionPageState extends State<SessionPage> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          value.presence(
-                              value.session.sessions[index].id,
-                              courseCode,
-                              value.session.sessions[index].date,
-                              value.session.sessions[index].finish,
-                              {
-                                'lecturer': value
-                                    .session.sessions[index].lecturer.fullName,
-                                'start': value.session.sessions[index].start,
-                                'finish': value.session.sessions[index].finish,
-                                'geolocation':
-                                    value.session.sessions[index].geolocation,
-                                'latitude':
-                                    value.session.sessions[index].room.latitude,
-                                'longitude': value
-                                    .session.sessions[index].room.longitude,
-                              },
-                              context);
+                          if (value.session.statusSession[index] != 'hadir' ||
+                              value.session.statusSession[index] == 'izin') {
+                            value.presence(
+                                value.session.sessions[index].id,
+                                courseCode,
+                                value.session.sessions[index].date,
+                                value.session.sessions[index].finish,
+                                {
+                                  'lecturer': value.session.sessions[index]
+                                      .lecturer.fullName,
+                                  'session_id':
+                                      value.session.sessions[index].id,
+                                  'subject_course_code': value.session
+                                      .sessions[index].subjectCourseCode,
+                                  'start': value.session.sessions[index].start,
+                                  'finish':
+                                      value.session.sessions[index].finish,
+                                  'geolocation':
+                                      value.session.sessions[index].geolocation,
+                                  'latitude': value
+                                      .session.sessions[index].room.latitude,
+                                  'longitude': value
+                                      .session.sessions[index].room.longitude,
+                                },
+                                context);
+                          } else {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.info,
+                              animType: AnimType.rightSlide,
+                              title: 'Info',
+                              desc: 'Anda Sudah Melakukan Presensi',
+                              btnOkOnPress: () {},
+                            ).show();
+                          }
                         },
                         child: Container(
                           height: 105,
