@@ -63,6 +63,7 @@ class Session {
     required this.createdAt,
     required this.updatedAt,
     required this.lecturer,
+    required this.room,
   });
 
   int id;
@@ -80,6 +81,7 @@ class Session {
   DateTime createdAt;
   DateTime updatedAt;
   Lecturer lecturer;
+  Room room;
 
   factory Session.fromJson(Map<String, dynamic> json) => Session(
         id: json["id"],
@@ -97,6 +99,7 @@ class Session {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         lecturer: Lecturer.fromJson(json["lecturer"]),
+        room: Room.fromJson(json["room"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -116,6 +119,7 @@ class Session {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "lecturer": lecturer.toJson(),
+        "room": room.toJson(),
       };
 }
 
@@ -156,5 +160,41 @@ class Lecturer {
         "major_id": majorId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
+      };
+}
+
+class Room {
+  Room({
+    required this.id,
+    required this.name,
+    required this.latitude,
+    required this.longitude,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  int id;
+  String name;
+  String latitude;
+  String longitude;
+  dynamic createdAt;
+  dynamic updatedAt;
+
+  factory Room.fromJson(Map<String, dynamic> json) => Room(
+        id: json["id"],
+        name: json["name"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "latitude": latitude,
+        "longitude": longitude,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
       };
 }
