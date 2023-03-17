@@ -138,26 +138,6 @@ class SignInStudentPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 7,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    DelayedDisplay(
-                      delay: const Duration(seconds: 3),
-                      child: GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, '/registerStudentPage'),
-                        child: const Text(
-                          'Daftar Akun',
-                          style: TextStyle(color: Colors.blue),
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
                   height: 18,
                 ),
                 DelayedDisplay(

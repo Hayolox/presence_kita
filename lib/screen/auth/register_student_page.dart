@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:presence_kita/screen/auth/auth_view_model.dart';
 import 'package:presence_kita/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 
 class RegisterStudentPage extends StatelessWidget {
   RegisterStudentPage({super.key});

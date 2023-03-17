@@ -2,11 +2,9 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:presence_kita/common/widgets/loading_screen.dart';
 import 'package:presence_kita/constant/state.dart';
-import 'package:presence_kita/model/session_model.dart';
 import 'package:presence_kita/screen/student/session/session_view_model.dart';
 import 'package:presence_kita/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class SessionPage extends StatefulWidget {
@@ -18,7 +16,7 @@ class SessionPage extends StatefulWidget {
 
 class _SessionPageState extends State<SessionPage> {
   String nameSubject = '';
-  String courseCode = '';
+  late int classroomsId;
   @override
   void initState() {
     super.initState();
@@ -27,8 +25,8 @@ class _SessionPageState extends State<SessionPage> {
       Map args = ModalRoute.of(context)!.settings.arguments as Map;
 
       nameSubject = args['name_subject'];
-      courseCode = args['course_code'];
-      await viewModel.getDataSession(courseCode);
+      classroomsId = args['classrooms_id'];
+      await viewModel.getDataSession(classroomsId);
     });
   }
 
@@ -230,7 +228,8 @@ class _SessionPageState extends State<SessionPage> {
                           } else {
                             value.presence(
                                 value.session.sessions[index].id,
-                                courseCode,
+                                int.parse(
+                                    value.session.sessions[index].classroomsId),
                                 value.session.sessions[index].date,
                                 value.session.sessions[index].finish,
                                 {
@@ -238,8 +237,8 @@ class _SessionPageState extends State<SessionPage> {
                                       .lecturer.fullName,
                                   'session_id':
                                       value.session.sessions[index].id,
-                                  'subject_course_code': value.session
-                                      .sessions[index].subjectCourseCode,
+                                  'classroomsId': value
+                                      .session.sessions[index].classroomsId,
                                   'start': value.session.sessions[index].start,
                                   'finish':
                                       value.session.sessions[index].finish,
@@ -271,7 +270,8 @@ class _SessionPageState extends State<SessionPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    value.session.sessions[index].title,
+                                    value.session.sessions[index].title
+                                        .toString(),
                                     style: primaryTextStyle,
                                   ),
                                   Text(

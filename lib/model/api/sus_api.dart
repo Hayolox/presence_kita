@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:presence_kita/constant/api.dart';
-import 'package:presence_kita/model/sus_question_model.dart';
 
 class SusApi {
   final API _api = API();

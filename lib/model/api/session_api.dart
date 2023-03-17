@@ -5,9 +5,10 @@ import 'package:presence_kita/model/session_model.dart';
 class SessionApi {
   final API _api = API();
 
-  Future<SessionModel> getSession(String paramToken, String paramSubjet) async {
+  Future<SessionModel> getSession(
+      String paramToken, int paramClassroomsId) async {
     final response =
-        await _api.dio.get('session-subject?subject_course_code=$paramSubjet',
+        await _api.dio.get('session-subject?classrooms_id=$paramClassroomsId',
             options: Options(
               headers: {
                 "authorization": "Bearer $paramToken",

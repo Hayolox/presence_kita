@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -23,7 +24,7 @@ class PresenceViewModel extends ChangeNotifier {
 
   late String nameLecturer;
   late String qrCode;
-  late String subjectCourseCode;
+  late String classroomsId;
   late int sessionId;
 
   String fileName = 'Pilih File';
@@ -49,7 +50,7 @@ class PresenceViewModel extends ChangeNotifier {
   ) {
     changeStatusState(StatusState.loding);
     nameLecturer = paramNameLecturer;
-    subjectCourseCode = paramSubjectCourseCode;
+    classroomsId = paramSubjectCourseCode;
     sessionId = paramSessionId;
     start = paramStart;
     finish = paramFinish;
@@ -62,6 +63,7 @@ class PresenceViewModel extends ChangeNotifier {
 
   present(BuildContext context) async {
     try {
+      // ignore: unused_local_variable
       LocationPermission permission;
       permission = await Geolocator.requestPermission();
       final prefs = await SharedPreferences.getInstance();
@@ -70,26 +72,34 @@ class PresenceViewModel extends ChangeNotifier {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
 
-      double distanceInMeters = Geolocator.distanceBetween(
-          position.latitude, position.longitude, latitude, longitude);
-
       String qrCodeResult = await FlutterBarcodeScanner.scanBarcode(
         '#FF0000', // Warna toolbar
         'Cancel', // Teks tombol batal
         true, // Mengaktifkan mode scan otomatis
         ScanMode.QR, // Mode scan yang ingin digunakan
       );
+      log('step 1');
 
+      Map<String, dynamic> qrCode =
+          jsonDecode(qrCodeResult) as Map<String, dynamic>;
+      log('step 2');
+      double distanceInMeters = Geolocator.distanceBetween(
+          position.latitude,
+          position.longitude,
+          double.parse(qrCode['latitude']),
+          double.parse(qrCode['longitude']));
+      log('step 3');
       if (qrCodeResult.isNotEmpty) {
-        qrCode = qrCodeResult;
         changeStatusState(StatusState.loding);
         Map<String, dynamic> data = {
-          'QrCode': qrCode,
-          'session_id': sessionId,
-          'subject_course_code': subjectCourseCode,
+          'QrCode': qrCode['qrCode'],
+          'session_id': qrCode['sessionId'],
+          'classrooms_id': qrCode['classrooms_id'],
           'status': 'hadir'
         };
-        if (geolocation == '1') {
+        log('step 4');
+        if (qrCode['geolocation'] == '1') {
+          log('step 5');
           if (position.isMocked) {
             // ignore: use_build_context_synchronously
             AwesomeDialog(
@@ -103,6 +113,7 @@ class PresenceViewModel extends ChangeNotifier {
             changeStatusState(StatusState.none);
           } else {
             if (distanceInMeters < 10) {
+              log('step 7');
               await _api.presence(data, items![0]);
               changeStatusState(StatusState.none);
               // ignore: use_build_context_synchronously
@@ -192,7 +203,7 @@ class PresenceViewModel extends ChangeNotifier {
       changeStatusState(StatusState.loding);
       final prefs = await SharedPreferences.getInstance();
       final List<String>? items = prefs.getStringList('student');
-      await _api.izin(file, sessionId, subjectCourseCode, items![0]);
+      await _api.izin(file, sessionId, int.parse(classroomsId), items![0]);
       changeStatusState(StatusState.none);
       // ignore: use_build_context_synchronously
       AwesomeDialog(

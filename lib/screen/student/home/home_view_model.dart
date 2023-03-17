@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:presence_kita/constant/state.dart';
 import 'package:presence_kita/model/api/home_api.dart';
 import 'package:presence_kita/model/home_model.dart';
-import 'package:presence_kita/model/student_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeViewModel extends ChangeNotifier {

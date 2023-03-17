@@ -3,7 +3,6 @@ import 'package:presence_kita/common/widgets/loading_screen.dart';
 import 'package:presence_kita/common/widgets/submit_button_presence_widget.dart';
 import 'package:presence_kita/constant/state.dart';
 import 'package:presence_kita/screen/student/presence/presence_view_model.dart';
-import 'package:presence_kita/screen/student/session/session_view_model.dart';
 import 'package:presence_kita/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +23,7 @@ class _PresencePageState extends State<PresencePage> {
 
       viewModel.loadingPresence(
           args['lecturer'],
-          args['subject_course_code'],
+          args['classroomsId'],
           args['session_id'],
           args['start'],
           args['finish'],
@@ -98,13 +97,6 @@ class _PresencePageState extends State<PresencePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      GestureDetector(
-                        onTap: () => value.present(context),
-                        child: const SubmitButtonPresenceWidget(
-                          title: 'Masuk',
-                          color: purpleColor,
-                        ),
-                      ),
                       GestureDetector(
                         onTap: () =>
                             Navigator.pushNamed(context, '/licensePage'),

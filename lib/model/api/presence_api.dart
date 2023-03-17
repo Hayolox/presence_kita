@@ -18,8 +18,8 @@ class PresenceApi {
     return response;
   }
 
-  Future izin(File paramFile, int paramSessiionId,
-      String paramSubjectCourseCode, String paramToken) async {
+  Future izin(File paramFile, int paramSessiionId, int classroomsId,
+      String paramToken) async {
     Random random = Random();
     int randomNumber = random.nextInt(20);
 
@@ -27,7 +27,7 @@ class PresenceApi {
       'izin': await MultipartFile.fromFile(paramFile.path,
           filename: '$randomNumber.pdf'),
       'session_id': paramSessiionId,
-      'subject_course_code': paramSubjectCourseCode,
+      'classrooms_id': classroomsId,
     });
 
     var response = await _api.dio.post('presence-izin',

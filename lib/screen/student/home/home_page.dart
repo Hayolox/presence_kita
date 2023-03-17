@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:presence_kita/common/widgets/loading_screen.dart';
 import 'package:presence_kita/constant/state.dart';
 import 'package:presence_kita/screen/student/home/home_view_model.dart';
+import 'package:presence_kita/screen/student/presence/presence_view_model.dart';
 import 'package:presence_kita/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,16 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.transparent,
           bottomOpacity: 0.0,
           elevation: 0.0,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.qr_code_scanner),
+              onPressed: () async {
+                var viewModel =
+                    Provider.of<PresenceViewModel>(context, listen: false);
+                await viewModel.present(context);
+              },
+            ),
+          ],
           title: Text(
             'Attendity',
             style: primaryTextStyle.copyWith(
@@ -114,13 +125,14 @@ class _HomePageState extends State<HomePage> {
                                     onTap: () => Navigator.pushNamed(
                                         context, '/sessionPage',
                                         arguments: {
-                                          'course_code': value
+                                          'classrooms_id': value.dataHome
+                                              .subject[index].classroom.id,
+                                          'name_subject': value
                                               .dataHome
                                               .subject[index]
+                                              .classroom
                                               .subject
-                                              .courseCode,
-                                          'name_subject': value.dataHome
-                                              .subject[index].subject.nickname
+                                              .fullName
                                         }),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(
@@ -146,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                                             child: Center(
                                               child: Text(
                                                 value.dataHome.subject[index]
-                                                    .subject.nickname
+                                                    .classroom.subject.nickname
                                                     .substring(0, 1),
                                                 style:
                                                     primaryTextStyle.copyWith(
@@ -158,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           Text(
                                             value.dataHome.subject[index]
-                                                .subject.nickname,
+                                                .classroom.subject.nickname,
                                             style: primaryTextStyle.copyWith(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,

@@ -52,7 +52,6 @@ class AuthViewModel extends ChangeNotifier {
 
   void register(String paramNim, String paramName, String paramPassword,
       BuildContext context) async {
-    print("masuuukk sini");
     try {
       Map<String, dynamic> data = {
         'nsn': paramNim,

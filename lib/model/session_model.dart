@@ -56,7 +56,7 @@ class Session {
     required this.date,
     required this.lecturerNip,
     required this.semesterId,
-    required this.subjectCourseCode,
+    required this.classroomsId,
     required this.year,
     required this.roomId,
     required this.geolocation,
@@ -74,7 +74,7 @@ class Session {
   DateTime date;
   String lecturerNip;
   String semesterId;
-  String subjectCourseCode;
+  String classroomsId;
   String year;
   String roomId;
   String geolocation;
@@ -92,7 +92,7 @@ class Session {
         date: DateTime.parse(json["date"]),
         lecturerNip: json["lecturer_nip"],
         semesterId: json["semester_id"],
-        subjectCourseCode: json["subject_course_code"],
+        classroomsId: json["classrooms_id"],
         year: json["year"],
         roomId: json["room_id"],
         geolocation: json["geolocation"],
@@ -112,7 +112,7 @@ class Session {
             "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
         "lecturer_nip": lecturerNip,
         "semester_id": semesterId,
-        "subject_course_code": subjectCourseCode,
+        "classrooms_id": classroomsId,
         "year": year,
         "room_id": roomId,
         "geolocation": geolocation,

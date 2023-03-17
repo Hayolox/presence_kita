@@ -4,7 +4,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:presence_kita/constant/state.dart';
 import 'package:presence_kita/model/api/sus_api.dart';
-import 'package:presence_kita/model/sus_question_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SusViewModel extends ChangeNotifier {

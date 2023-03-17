@@ -18,12 +18,13 @@ class SessionViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  getDataSession(String paramSubject) async {
+  getDataSession(int paramClassroomsId) async {
     changeStatusState(StatusState.loding);
     final prefs = await SharedPreferences.getInstance();
     final List<String>? items = prefs.getStringList('student');
     SessionModel getDataSession =
-        await _sessionApi.getSession(items![0], paramSubject);
+        await _sessionApi.getSession(items![0], paramClassroomsId);
+
     session = getDataSession;
     roles = getDataSession.roles;
     notifyListeners();
@@ -32,7 +33,7 @@ class SessionViewModel extends ChangeNotifier {
 
   presence(
       int paramSessionId,
-      String paramSubjectCourseCode,
+      int paramClassroomsId,
       DateTime paramDateSession,
       String paramFinishSession,
       Map<String, dynamic> argument,
