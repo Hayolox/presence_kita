@@ -169,8 +169,7 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ),
                                           Text(
-                                            value.dataHome.subject[index]
-                                                .classroom.subject.nickname,
+                                            '${value.dataHome.subject[index].classroom.subject.nickname} ${value.dataHome.subject[index].classroom.name}',
                                             style: primaryTextStyle.copyWith(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
