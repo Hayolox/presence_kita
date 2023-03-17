@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presence_kita/screen/auth/auth_view_model.dart';
+import 'package:presence_kita/screen/auth/register_student_page.dart';
 import 'package:presence_kita/screen/drawer/sus_view_model.dart';
 import 'package:presence_kita/screen/komti/add_session_page.dart';
 import 'package:presence_kita/screen/auth/signIn_student_page.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
 
         //Student Page
         '/signInStudentPage': (context) => SignInStudentPage(),
+        '/registerStudentPage': (context) => RegisterStudentPage(),
         '/homePage': (context) => const HomePage(),
         '/permitPage': (context) => const PermitPage(),
         '/question': (context) => const QuestionnairePage(),

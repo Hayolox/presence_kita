@@ -50,6 +50,40 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
+  void register(String paramNim, String paramName, String paramPassword,
+      BuildContext context) async {
+    print("masuuukk sini");
+    try {
+      Map<String, dynamic> data = {
+        'nsn': paramNim,
+        'name': paramPassword,
+        'password': paramPassword,
+      };
+
+      await _authApi.register(data);
+
+      // ignore: use_build_context_synchronously
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.info,
+        animType: AnimType.rightSlide,
+        title: 'INFO',
+        desc: 'Akun Berhasil Didaftarkan',
+      ).show();
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 406) {
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.info,
+          animType: AnimType.rightSlide,
+          title: 'INFO',
+          desc: 'Akun Sudah Terdaftar',
+          btnOkOnPress: () {},
+        ).show();
+      }
+    }
+  }
+
   changePasswrod(String paramOldPass, String newPass, String confirmNewPass,
       BuildContext context) async {
     try {

@@ -19,6 +19,15 @@ class AuthApi {
     return StudentModel.fromJson(response.data['data']);
   }
 
+  Future register(Map<String, dynamic> paramData) async {
+    final response = await _api.dio.post(
+      'login-proses-register',
+      data: paramData,
+    );
+
+    return response;
+  }
+
   Future changePassword(
       Map<String, dynamic> paramDataPass, String paramToken) async {
     var response = await _api.dio.post('change-password',
