@@ -78,17 +78,16 @@ class PresenceViewModel extends ChangeNotifier {
         true, // Mengaktifkan mode scan otomatis
         ScanMode.QR, // Mode scan yang ingin digunakan
       );
-      log('step 1');
 
       Map<String, dynamic> qrCode =
           jsonDecode(qrCodeResult) as Map<String, dynamic>;
-      log('step 2');
+
       double distanceInMeters = Geolocator.distanceBetween(
           position.latitude,
           position.longitude,
           double.parse(qrCode['latitude']),
           double.parse(qrCode['longitude']));
-      log('step 3');
+
       if (qrCodeResult.isNotEmpty) {
         changeStatusState(StatusState.loding);
         Map<String, dynamic> data = {
@@ -97,9 +96,8 @@ class PresenceViewModel extends ChangeNotifier {
           'classrooms_id': qrCode['classrooms_id'],
           'status': 'hadir'
         };
-        log('step 4');
+
         if (qrCode['geolocation'] == '1') {
-          log('step 5');
           if (position.isMocked) {
             // ignore: use_build_context_synchronously
             AwesomeDialog(
@@ -113,7 +111,6 @@ class PresenceViewModel extends ChangeNotifier {
             changeStatusState(StatusState.none);
           } else {
             if (distanceInMeters < 10) {
-              log('step 7');
               await _api.presence(data, items![0]);
               changeStatusState(StatusState.none);
               // ignore: use_build_context_synchronously
@@ -178,6 +175,19 @@ class PresenceViewModel extends ChangeNotifier {
           animType: AnimType.rightSlide,
           title: 'INFO',
           desc: 'Silahkan Presensi Ulang',
+          btnOkOnPress: () {},
+        ).show();
+        changeStatusState(StatusState.none);
+      }
+
+      if (e.response?.statusCode == 403) {
+        // ignore: use_build_context_synchronously
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.info,
+          animType: AnimType.rightSlide,
+          title: 'INFO',
+          desc: 'Anda Sudah Hadir',
           btnOkOnPress: () {},
         ).show();
         changeStatusState(StatusState.none);
