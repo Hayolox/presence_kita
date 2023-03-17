@@ -144,11 +144,11 @@ class SignInStudentPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     DelayedDisplay(
-                        delay: Duration(seconds: 3),
+                        delay: const Duration(seconds: 3),
                         child: GestureDetector(
                           onTap: () => Navigator.pushNamed(
                               context, '/registerStudentPage'),
-                          child: Text(
+                          child: const Text(
                             'Daftar Akun',
                             style: TextStyle(color: Colors.blue),
                           ),
