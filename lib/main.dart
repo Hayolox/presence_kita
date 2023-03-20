@@ -16,6 +16,8 @@ import 'package:presence_kita/screen/student/session/session_page.dart';
 import 'package:presence_kita/screen/student/session/session_view_model.dart';
 import 'package:presence_kita/screen/student/presence/sick_page.dart';
 import 'package:presence_kita/screen/splash_page.dart';
+import 'package:presence_kita/screen/student/session_pratikum/session_pratikum_page.dart';
+import 'package:presence_kita/screen/student/session_pratikum/session_pratikum_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -29,6 +31,9 @@ void main() {
       ),
       ChangeNotifierProvider<SessionViewModel>(
         create: (context) => SessionViewModel(),
+      ),
+      ChangeNotifierProvider<SessionPratikumViewModel>(
+        create: (context) => SessionPratikumViewModel(),
       ),
       ChangeNotifierProvider<SusViewModel>(
         create: (context) => SusViewModel(),
@@ -63,6 +68,7 @@ class MyApp extends StatelessWidget {
         '/permitPage': (context) => const PermitPage(),
         '/question': (context) => const QuestionnairePage(),
         '/sessionPage': (context) => const SessionPage(),
+        '/sessionPratikumPage': (context) => const SessionPratikumPage(),
         '/presencePage': (context) => const PresencePage(),
         '/licensePage': (context) => const LicenseePage(),
         '/sickPage': (context) => const SickPage(),

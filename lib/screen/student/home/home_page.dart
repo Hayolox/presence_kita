@@ -203,7 +203,100 @@ class _HomePageState extends State<HomePage> {
                               },
                             ),
                           ),
-                        )
+                        ),
+                        Text(
+                          'Pratikum Kamu',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 22,
+                        ),
+                        Expanded(
+                          child: RefreshIndicator(
+                            onRefresh: () => value.getDataHome(),
+                            child: ListView.builder(
+                              itemCount: value.dataHome.pratikum.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: 10,
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () => Navigator.pushNamed(
+                                        context, '/sessionPratikumPage',
+                                        arguments: {
+                                          'classrooms_id': value
+                                              .dataHome
+                                              .pratikum[index]
+                                              .classroompratikum
+                                              .id,
+                                          'name_subject': value
+                                              .dataHome
+                                              .pratikum[index]
+                                              .classroompratikum
+                                              .subject
+                                              .fullName
+                                        }),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 15,
+                                      ),
+                                      height: 77,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(width: 1),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            height: 45,
+                                            width: 45,
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xffAEC8E7),
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                value
+                                                    .dataHome
+                                                    .pratikum[index]
+                                                    .classroompratikum
+                                                    .subject
+                                                    .nickname
+                                                    .substring(0, 1),
+                                                style:
+                                                    primaryTextStyle.copyWith(
+                                                  color: Colors.white,
+                                                  fontSize: 22,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 6,
+                                          ),
+                                          Text(
+                                            '${value.dataHome.pratikum[index].classroompratikum.subject.nickname} ${value.dataHome.pratikum[index].classroompratikum.name}',
+                                            style: primaryTextStyle.copyWith(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                       ],
                     );
                   },
