@@ -41,7 +41,8 @@ class SessionPratikumViewModel extends ChangeNotifier {
     if (now.year == paramDateSession.year &&
         now.month == paramDateSession.month &&
         now.day == paramDateSession.day) {
-      Navigator.pushNamed(context, '/presencePage', arguments: argument);
+      Navigator.pushNamed(context, '/presencePratikumPage',
+          arguments: argument);
     } else {
       AwesomeDialog(
         context: context,

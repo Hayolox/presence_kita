@@ -8,9 +8,13 @@ import 'package:presence_kita/screen/drawer/change_password_page.dart';
 import 'package:presence_kita/screen/drawer/permit_page.dart';
 import 'package:presence_kita/screen/drawer/questionnaire_page.dart';
 import 'package:presence_kita/screen/student/home/home_page.dart';
+import 'package:presence_kita/screen/student/home/home_pratikum_page.dart';
 import 'package:presence_kita/screen/student/home/home_view_model.dart';
 import 'package:presence_kita/screen/student/presence/license_page.dart';
+import 'package:presence_kita/screen/student/presence/presence_pratikum/license_pratikum_page.dart';
 import 'package:presence_kita/screen/student/presence/presence_page.dart';
+import 'package:presence_kita/screen/student/presence/presence_pratikum/presence_pratikum_page.dart';
+import 'package:presence_kita/screen/student/presence/presence_pratikum/presence_pratikum_view_model.dart';
 import 'package:presence_kita/screen/student/presence/presence_view_model.dart';
 import 'package:presence_kita/screen/student/session/session_page.dart';
 import 'package:presence_kita/screen/student/session/session_view_model.dart';
@@ -41,6 +45,9 @@ void main() {
       ChangeNotifierProvider<PresenceViewModel>(
         create: (context) => PresenceViewModel(),
       ),
+      ChangeNotifierProvider<PresencePratikumViewModel>(
+        create: (context) => PresencePratikumViewModel(),
+      ),
     ],
     child: const MyApp(),
   ));
@@ -65,12 +72,15 @@ class MyApp extends StatelessWidget {
         '/signInStudentPage': (context) => SignInStudentPage(),
         '/registerStudentPage': (context) => RegisterStudentPage(),
         '/homePage': (context) => const HomePage(),
+        '/homePratikumPage': (context) => const HomePratikumPage(),
         '/permitPage': (context) => const PermitPage(),
         '/question': (context) => const QuestionnairePage(),
         '/sessionPage': (context) => const SessionPage(),
         '/sessionPratikumPage': (context) => const SessionPratikumPage(),
         '/presencePage': (context) => const PresencePage(),
+        '/presencePratikumPage': (context) => const PresencePratikumPage(),
         '/licensePage': (context) => const LicenseePage(),
+        '/licensePratikumPage': (context) => const LicenseePratikumPage(),
         '/sickPage': (context) => const SickPage(),
       },
     );

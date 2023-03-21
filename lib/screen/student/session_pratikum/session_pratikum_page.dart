@@ -42,7 +42,7 @@ class _SessionPratikumPageState extends State<SessionPratikumPage> {
         bottomOpacity: 0.0,
         elevation: 0.0,
         title: Text(
-          'Session',
+          'Session Pratikum',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             color: Colors.black,

@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:presence_kita/common/widgets/loading_screen.dart';
 import 'package:presence_kita/common/widgets/submit_button_presence_widget.dart';
 import 'package:presence_kita/constant/state.dart';
+import 'package:presence_kita/screen/student/presence/presence_pratikum/presence_pratikum_view_model.dart';
 import 'package:presence_kita/screen/student/presence/presence_view_model.dart';
 import 'package:presence_kita/theme.dart';
 import 'package:provider/provider.dart';
 
-class PresencePage extends StatefulWidget {
-  const PresencePage({super.key});
+class PresencePratikumPage extends StatefulWidget {
+  const PresencePratikumPage({super.key});
 
   @override
-  State<PresencePage> createState() => _PresencePageState();
+  State<PresencePratikumPage> createState() => _PresencePratikumPageState();
 }
 
-class _PresencePageState extends State<PresencePage> {
+class _PresencePratikumPageState extends State<PresencePratikumPage> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      var viewModel = Provider.of<PresenceViewModel>(context, listen: false);
+      var viewModel =
+          Provider.of<PresencePratikumViewModel>(context, listen: false);
       Map args = ModalRoute.of(context)!.settings.arguments as Map;
 
       viewModel.loadingPresence(
@@ -43,7 +45,7 @@ class _PresencePageState extends State<PresencePage> {
         bottomOpacity: 0.0,
         elevation: 0.0,
         title: Text(
-          'Session',
+          'Presence Pratikum',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             color: Colors.black,
@@ -57,7 +59,7 @@ class _PresencePageState extends State<PresencePage> {
       ),
       body: Padding(
           padding: const EdgeInsets.all(20),
-          child: Consumer<PresenceViewModel>(
+          child: Consumer<PresencePratikumViewModel>(
             builder: (context, value, child) {
               if (value.state == StatusState.loding) {
                 return const Center(
@@ -98,8 +100,8 @@ class _PresencePageState extends State<PresencePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                        onTap: () =>
-                            Navigator.pushNamed(context, '/licensePage'),
+                        onTap: () => Navigator.pushNamed(
+                            context, '/licensePratikumPage'),
                         child: const SubmitButtonPresenceWidget(
                           title: 'Izin',
                           color: pinkColor,
