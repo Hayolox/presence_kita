@@ -128,7 +128,6 @@ class Lecturer {
     required this.nip,
     required this.fullName,
     required this.username,
-    required this.password,
     required this.majorId,
     required this.createdAt,
     required this.updatedAt,
@@ -137,7 +136,6 @@ class Lecturer {
   int nip;
   String fullName;
   String username;
-  String password;
   String majorId;
   DateTime createdAt;
   DateTime updatedAt;
@@ -146,7 +144,6 @@ class Lecturer {
         nip: json["nip"],
         fullName: json["full_name"],
         username: json["username"],
-        password: json["password"],
         majorId: json["major_id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
@@ -156,7 +153,6 @@ class Lecturer {
         "nip": nip,
         "full_name": fullName,
         "username": username,
-        "password": password,
         "major_id": majorId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
@@ -169,24 +165,24 @@ class Room {
     required this.name,
     required this.latitude,
     required this.longitude,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   int id;
   String name;
   String latitude;
   String longitude;
-  dynamic createdAt;
-  dynamic updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   factory Room.fromJson(Map<String, dynamic> json) => Room(
         id: json["id"],
         name: json["name"],
         latitude: json["latitude"],
         longitude: json["longitude"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -194,7 +190,7 @@ class Room {
         "name": name,
         "latitude": latitude,
         "longitude": longitude,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }

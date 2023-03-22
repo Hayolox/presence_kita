@@ -155,31 +155,6 @@ class _SessionPageState extends State<SessionPage> {
                         ),
                       ],
                     ),
-                    if (value.roles == "komti") ...[
-                      GestureDetector(
-                        onTap: () =>
-                            Navigator.pushNamed(context, '/addSessionPage'),
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 45,
-                              width: 45,
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              child: const Center(
-                                child: Icon(Icons.add),
-                              ),
-                            ),
-                            Text(
-                              'Add',
-                              style: primaryTextStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
                   ],
                 ),
                 const SizedBox(
@@ -270,8 +245,7 @@ class _SessionPageState extends State<SessionPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    value.session.sessions[index].title
-                                        .toString(),
+                                    value.session.sessions[index].title,
                                     style: primaryTextStyle,
                                   ),
                                   Text(

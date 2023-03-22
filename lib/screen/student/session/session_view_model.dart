@@ -22,6 +22,7 @@ class SessionViewModel extends ChangeNotifier {
     changeStatusState(StatusState.loding);
     final prefs = await SharedPreferences.getInstance();
     final List<String>? items = prefs.getStringList('student');
+
     SessionModel getDataSession =
         await _sessionApi.getSession(items![0], paramClassroomsId);
 
