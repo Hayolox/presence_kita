@@ -165,24 +165,28 @@ class Room {
     required this.name,
     required this.latitude,
     required this.longitude,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   int id;
   String name;
   String latitude;
   String longitude;
-  DateTime createdAt;
-  DateTime updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   factory Room.fromJson(Map<String, dynamic> json) => Room(
         id: json["id"],
         name: json["name"],
         latitude: json["latitude"],
         longitude: json["longitude"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -190,7 +194,7 @@ class Room {
         "name": name,
         "latitude": latitude,
         "longitude": longitude,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
       };
 }

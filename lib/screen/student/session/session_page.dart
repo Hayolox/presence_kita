@@ -259,30 +259,36 @@ class _SessionPageState extends State<SessionPage> {
                                 style: primaryTextStyle,
                               ),
                               Text(
-                                value.now.day >
-                                        value.session.sessions[index].date.day
-                                    ? "Anda Alpa"
-                                    : value.now.month >
-                                            value.session.sessions[index].date
-                                                .month
-                                        ? "Anda Alpa"
-                                        : value.now.year >
-                                                value.session.sessions[index]
-                                                    .date.year
-                                            ? 'Anda Alpa'
-                                            : value.session
-                                                        .statusSession[index] ==
-                                                    "none"
-                                                ? "Anda Belum Melakukan Presensi"
-                                                : value.session.statusSession[
-                                                            index] ==
-                                                        "hadir"
-                                                    ? "Anda Hadir"
-                                                    : value.session.statusSession[
-                                                                index] ==
-                                                            "proses"
-                                                        ? "Menunggu Konfirmasi Staff Atau Dosen"
-                                                        : "Anda Izin",
+                                value.session.statusSession[index] == "hadir"
+                                    ? "Anda Hadir"
+                                    : value.session.statusSession[index] ==
+                                            "proses"
+                                        ? "Menunggu Konfirmasi Staff Atau Dosen"
+                                        : value.session.statusSession[index] ==
+                                                'izin'
+                                            ? 'Anda Izin'
+                                            : value.now.day >
+                                                    value
+                                                        .session
+                                                        .sessions[index]
+                                                        .date
+                                                        .day
+                                                ? "Anda Alpa"
+                                                : value.now.month >
+                                                        value
+                                                            .session
+                                                            .sessions[index]
+                                                            .date
+                                                            .month
+                                                    ? "Anda Alpa"
+                                                    : value.now.year >
+                                                            value
+                                                                .session
+                                                                .sessions[index]
+                                                                .date
+                                                                .year
+                                                        ? 'Anda Alpa'
+                                                        : 'Anda Belum Melakukan Presensi',
                                 style: primaryTextStyle,
                               ),
                             ],
